@@ -35,7 +35,6 @@ import { registerSettingsView } from "../src/settings-view.ts";
 import { LANGUAGES } from "../src/domain/catalog.ts";
 
 // Console assets inlined at build time (?raw) so the app is one bundle.
-import consoleFonts from "./console/fonts.css?raw";
 import consoleStyles from "./console/styles.css?raw";
 import consoleApp from "./console/app.js?raw";
 import viewHome from "./console/views/home.js?raw";
@@ -49,14 +48,12 @@ import viewFurniture from "./console/views/furniture.js?raw";
 import viewServices from "./console/views/services.js?raw";
 import viewDistros from "./console/views/distros.js?raw";
 import viewShifts from "./console/views/shifts.js?raw";
+import viewCare from "./console/views/care.js?raw";
 import viewData from "./console/views/data.js?raw";
 import viewAdmin from "./console/views/admin.js?raw";
 
-// Apply the console fonts + stylesheet (index.html no longer links them).
+// Apply the console stylesheet (index.html no longer links it).
 {
-  const fonts = document.createElement("style");
-  fonts.textContent = consoleFonts;
-  document.head.append(fonts);
   const style = document.createElement("style");
   style.textContent = consoleStyles;
   document.head.append(style);
@@ -110,10 +107,10 @@ function firstRunScreen(root: HTMLElement, peerId: string): Promise<AppConfig> {
     root.innerHTML = "";
     const wrap = el("div", { class: "boot-onboard" });
 
-    // Hero: the Bread voice up top, then two clear paths (create / join).
+    // First-run message and two clear paths (create / join).
     const hero = el("div", { class: "boot-hero" });
     const title = el("h2", { class: "boot-hero__title" });
-    title.innerHTML = "Your tools. Your data. <em>Your rules.</em>";
+    title.innerHTML = "Help begins <em>with a connection.</em>";
     const sub = el(
       "p",
       { class: "boot-hero__sub muted" },
@@ -134,9 +131,9 @@ function firstRunScreen(root: HTMLElement, peerId: string): Promise<AppConfig> {
 
     const orgName = el("input", { class: "input", placeholder: "e.g. Anytown Mutual Aid" });
     const shortName = el("input", { class: "input", placeholder: "e.g. AMA" });
-    const brandColor = el("input", { class: "input", type: "color", value: "#ea5817" }) as HTMLInputElement;
+    const brandColor = el("input", { class: "input", type: "color", value: "#155e75" }) as HTMLInputElement;
     const logoSelect = el("select", { class: "input" }) as HTMLSelectElement;
-    for (const [val, label] of [["loaf", "Bread mark"], ["initials", "Initials chip"], ["none", "No logo"]]) {
+    for (const [val, label] of [["initials", "Initials chip"], ["none", "No logo"]]) {
       const opt = document.createElement("option");
       opt.value = val;
       opt.textContent = label;
@@ -152,7 +149,7 @@ function firstRunScreen(root: HTMLElement, peerId: string): Promise<AppConfig> {
     const joinBtn = el("button", { class: "btn btn-secondary btn-block" }, "Join an existing org");
 
     createBtn.onclick = () => {
-      const name = orgName.value.trim() || "My Mutual Aid";
+      const name = orgName.value.trim() || "Care Circles";
       const endpointValue = createEndpoint.value.trim() || undefined;
       resolve({
         mode: "create",
@@ -372,6 +369,7 @@ const CONSOLE_SCRIPTS: string[] = [
   viewServices,
   viewDistros,
   viewShifts,
+  viewCare,
   viewData,
   viewDashboard,
 ];
@@ -557,7 +555,7 @@ async function boot(): Promise<void> {
       ...(config.mode === "join"
         ? { rosterUrl: config.rosterUrl }
         : {
-            createOrg: config.orgName ?? "My Mutual Aid",
+            createOrg: config.orgName ?? "Care Circles",
             deviceName: config.deviceName || "founding device",
             orgConfig: config.orgConfig,
           }),

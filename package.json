@@ -1,8 +1,8 @@
 {
-  "name": "mutual-aid-toolkit",
+  "name": "care-circles",
   "version": "0.1.0",
   "private": true,
-  "description": "A self-owned toolkit for running mutual aid. Local-first, works offline, open source.",
+  "description": "Care Circles: consented help requests and volunteer handoffs, built on mutualaid.fun.",
   "type": "module",
   "engines": {
     "node": ">=22.13"
@@ -33,7 +33,7 @@
     "vite": "^6.0.7",
     "vite-plugin-singlefile": "^2.3.3",
     "vite-plugin-wasm": "^3.4.1",
-    "vitest": "^3.0.0"
+    "vitest": "^5.1.2"
   },
   "license": "MIT",
   "repository": {

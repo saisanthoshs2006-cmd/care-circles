@@ -94,6 +94,17 @@ import {
   removeShiftSlot,
   updateShiftSlot,
 } from "./domain/shifts.ts";
+import {
+  cancelCareRequest,
+  completeCareRequest,
+  createCareRequest,
+  listCareRequests,
+  offerCareRequest,
+  rankCareVolunteers,
+  reopenCareRequest,
+  respondToCareOffer,
+  type CareInput,
+} from "./domain/care.ts";
 
 export class ApiError extends Error {
   status: number;
@@ -266,6 +277,40 @@ export function makeWebApi(store: BamStore) {
 
   return {
     ApiError,
+
+    // Care Circles: consented personal help, with no contact details stored.
+    async careList() {
+      const rows = listCareRequests(doc());
+      return amAdmin() ? rows : rows.filter((row) => row.offeredTo === store.peerId);
+    },
+    async careCreate(input: CareInput) {
+      requireAdmin("create help requests");
+      return wrap(() => createCareRequest(store.base, input));
+    },
+    async careMatches(id: string) {
+      requireAdmin("match help requests");
+      const request = doc().careRequests?.[id];
+      if (!request) throw new ApiError(404, "Help request not found.");
+      return rankCareVolunteers(request, roster());
+    },
+    async careOffer(id: string, peerId: string) {
+      requireAdmin("offer help requests");
+      return wrap(() => offerCareRequest(store.base, roster(), id, peerId));
+    },
+    async careRespond(id: string, accept: boolean) {
+      return wrap(() => respondToCareOffer(store.base, id, store.peerId, accept));
+    },
+    async careComplete(id: string) {
+      return wrap(() => completeCareRequest(store.base, id, store.peerId));
+    },
+    async careReopen(id: string) {
+      requireAdmin("reopen help requests");
+      return wrap(() => reopenCareRequest(store.base, id));
+    },
+    async careCancel(id: string) {
+      requireAdmin("cancel help requests");
+      return wrap(() => cancelCareRequest(store.base, id));
+    },
 
     // Check-in (spec 6.3) --------------------------------------------------
     async lookup(phone: string) {

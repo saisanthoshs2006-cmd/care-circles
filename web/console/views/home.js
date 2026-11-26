@@ -58,6 +58,12 @@
       title: "Take a request",
       desc: "A neighbor needs something — record it in a minute.",
     });
+    const care = taskCard({
+      view: "care",
+      icon: "♥",
+      title: "Connect someone with help",
+      desc: "Offer a small task to a volunteer and follow it through.",
+    });
     const outreach = taskCard({
       view: "outreach",
       icon: "📣",
@@ -75,6 +81,7 @@
       "div",
       { class: "taskgrid" },
       checkin.card,
+      care.card,
       intake.card,
       outreach.card,
       shifts.card

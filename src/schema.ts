@@ -192,6 +192,25 @@ export interface InventoryCount {
   createdAt: string;
 }
 
+/** A small, consented help task shared with a volunteer. No contact details. */
+export interface CareRequest {
+  id: string;
+  title: string;
+  category: string;
+  neighborhood: string;
+  language: string;
+  availability: string;
+  details: string;
+  status: "Open" | "Offered" | "Accepted" | "Completed" | "Cancelled";
+  offeredTo?: string; // roster peer id
+  declinedBy: string[];
+  createdAt: string;
+  offeredAt?: string;
+  acceptedAt?: string;
+  completedAt?: string;
+  cancelledAt?: string;
+}
+
 /** A doorstep-delivery task on the dispatch board (lives in the distros
  * doc, next to shift slots — same claim mechanics, same access domain). */
 export interface DeliveryTask {
@@ -273,6 +292,8 @@ export interface BamDoc {
   inventory?: { [typeKey: string]: { onHand: number; updatedAt: string; updatedBy: string } };
   /** Post-distro count history, newest useful for trends. */
   inventoryLog?: { [id: string]: InventoryCount };
+  /** Care Circles requests. Optional so existing org documents still open. */
+  careRequests?: { [id: string]: CareRequest };
 }
 
 /**

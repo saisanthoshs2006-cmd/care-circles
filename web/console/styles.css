@@ -3,21 +3,18 @@
  * Mobile-first: single column, bottom nav; widens to a left rail on desktop. */
 
 :root {
-  /* Bread Coop brand palette + Pogaca typeface (BreadchainCoop/bread-ui-kit):
-     core orange #EA5817 and jade #286b63 on warm paper #f6f3eb / ink #171414.
-     This is the default identity; any org overrides colours/logo/title when
-     they set up their own instance. High contrast (WCAG AA on text). */
-  --bg: #f6f3eb;          /* paper-main */
-  --surface: #fdfcf9;     /* paper-0 */
-  --surface-2: #f0ebe0;   /* paper-1 — subtle raised/hover */
-  --border: #e2d9c9;      /* between paper-1/2 */
-  --text: #171414;        /* text-standard */
-  --muted: #595959;       /* surface-grey-2 */
-  --brand: #ea5817;       /* core-orange */
-  --brand-ink: #ffffff;   /* text on brand */
-  --brand-soft: #ffe4d4;  /* tinted brand background */
-  --accent: #286b63;      /* primary-jade */
-  --accent-soft: #d7e4e1; /* jade tint */
+  /* Care Circles default identity; organizations can choose their own theme. */
+  --bg: #f4f8f8;
+  --surface: #ffffff;
+  --surface-2: #eaf2f3;
+  --border: #d3e2e5;
+  --text: #17333b;
+  --muted: #49616a;
+  --brand: #155e75;
+  --brand-ink: #ffffff;
+  --brand-soft: #deeff4;
+  --accent: #b8583e;
+  --accent-soft: #f7e7df;
   --ok: #32a800;          /* system-green */
   --ok-soft: #e4f3dc;
   --warn: #ce7f00;        /* system-warning */
@@ -46,7 +43,7 @@
   /* The signature Bread "lifted" shadow: a hard #595959 (surface-grey-2)
      offset that a button presses down onto (collapses on :active). This — not
      the palette — is what makes a control read as Bread. */
-  --lift-shadow: #595959;
+  --lift-shadow: #45636a;
   --lift: 4px 4px 0 0 var(--lift-shadow);
   --lift-sm: 2px 2px 0 0 var(--lift-shadow);
 
@@ -56,17 +53,15 @@
   --content-max: 720px;
 
   --shadow: 0 1px 2px rgba(23, 20, 20, 0.06), 0 4px 12px rgba(23, 20, 20, 0.05);
-  --focus: 0 0 0 3px rgba(234, 88, 23, 0.35);
+  --focus: 0 0 0 3px rgba(21, 94, 117, 0.35);
 
-  --font: "Bread Body", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Helvetica, Arial, "Noto Sans", "Noto Sans CJK SC", sans-serif;
-  --font-display: "Bread Display", "Bread Body", -apple-system,
+  --font-display: -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Headings + the app-bar wordmark use the Pogaca display cut at its black
-   weight with tight tracking — the Bread type voice, not just "a display
-   font". (.section-title stays a small all-caps body label; see below.) */
+/* Strong, compact headings keep the console easy to scan. */
 h1,
 h2,
 h3,
@@ -79,11 +74,7 @@ h3,
   line-height: 1.06;
 }
 
-/* Bread is warm-paper always — no OS dark mode (matches crowdstake.fun /
-   safety-net, which pin light regardless of prefers-color-scheme). The
-   previous dark override flipped the whole app to an ink background, which
-   read as off-brand; it's removed on purpose. `color-scheme: light` below
-   keeps native controls/scrollbars light too. */
+/* Keep native controls and scrollbars in the light color scheme. */
 
 * {
   box-sizing: border-box;
@@ -129,6 +120,8 @@ body {
   height: 34px;
   padding: 4px;
   background: var(--surface);
+  color: var(--brand);
+  font-weight: 800;
   border-radius: 8px;
   box-shadow: var(--lift-sm);
   flex: none;
@@ -544,7 +537,7 @@ textarea.input {
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #d24f13; /* orange-1 */
+  background: #0e4c60;
 }
 
 .btn-danger {

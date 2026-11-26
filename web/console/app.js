@@ -303,7 +303,7 @@
     }
     if (logo === "initials") {
       el.innerHTML = "";
-      el.textContent = (shortName || "•").slice(0, 3).toUpperCase();
+      el.textContent = (shortName || "CC").slice(0, 3).toUpperCase();
       el.style.fontWeight = "800";
       el.style.color = "var(--brand)";
       el.style.fontSize = "13px";
@@ -507,12 +507,12 @@
   const NAV_GROUPS = [
     { label: null, views: ["home"] },
     { label: "Distro day", views: ["checkin", "appointments", "shifts"] },
-    { label: "Requests", views: ["intake", "lookup", "furniture", "services"] },
+    { label: "Requests", views: ["care", "intake", "lookup", "furniture", "services"] },
     { label: "Reach out", views: ["outreach"] },
     { label: "Organize", views: ["distros", "dashboard", "data"] },
     { label: "Your org", views: ["admin", "roster"] },
   ];
-  const MOBILE_PRIMARY = ["home", "checkin", "intake", "outreach"];
+  const MOBILE_PRIMARY = ["home", "care", "checkin", "intake"];
 
   function closeMoreSheet() {
     const sheet = document.getElementById("nav-more-sheet");

@@ -1,4 +1,16 @@
-# mutualaid.fun
+# Care Circles (work in progress)
+
+Care Circles is a derivative of [mutualaid.fun](https://github.com/BreadchainCoop/mutualaid.fun) by the Bread Cooperative and Decentral Park. The source below this note is the original toolkit and remains credited to its contributors. The MIT copyright notice is preserved in [LICENSE](LICENSE).
+
+This adaptation adds a coordinator-created help request, consent confirmation, explainable volunteer suggestions, volunteer accept/decline, reassignment, and completion tracking. It also changes the visible app name and default theme. The existing distribution, offline storage, and sync features come from upstream. See [PROJECT_PLAN.md](PROJECT_PLAN.md) for the exact implementation status and remaining work. Use fictional data in demos; the new flow does not collect contact details.
+
+Development disclosure: OpenAI Codex assisted with repository comparison, implementation, dependency updates, and testing of this adaptation. The project owner should review and be able to explain all shipped behavior.
+
+To run locally: `npm ci`, then `npm run dev`. For Vercel, the project root is this directory and `vercel.json` builds the static `dist` site. Cross-device use needs a separately configured relay.
+
+---
+
+# Original mutualaid.fun documentation
 
 **Practical tools for working people to run their own mutual aid.**
 
