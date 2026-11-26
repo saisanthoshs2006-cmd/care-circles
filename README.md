@@ -8,6 +8,8 @@ Development disclosure: OpenAI Codex assisted with repository comparison, implem
 
 To run locally: `npm ci`, then `npm run dev`. For Vercel, the project root is this directory and `vercel.json` builds the static `dist` site. Cross-device use needs a separately configured relay.
 
+Live site: [care-circles-one.vercel.app](https://care-circles-one.vercel.app/). The site serves the offline-capable app; it does not provide a managed shared database or relay.
+
 ---
 
 # Original mutualaid.fun documentation

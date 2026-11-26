@@ -28,7 +28,7 @@ Care Circles aims to connect a person asking for practical help with an enrolled
 
 ## Deployment
 
-`vercel.json` sets Vercel to run the existing Vite build and serve `dist`. The site itself is static. Organization data is stored on devices; cross-device sharing relies on a separate relay and must be configured and evaluated before claiming a multi-user production service. The public source is at [saisanthoshs2006-cmd/care-circles](https://github.com/saisanthoshs2006-cmd/care-circles). Vercel CLI is logged out on this Mac. An anonymous temporary deployment built successfully but returned HTTP 403 when opened, so no working live app has been verified. Sign in to Vercel and deploy this repository under the user's account.
+`vercel.json` sets Vercel to run the existing Vite build and serve `dist`. The site itself is static. Organization data is stored on devices; cross-device sharing relies on a separate relay and must be configured and evaluated before claiming a multi-user production service. The public source is at [saisanthoshs2006-cmd/care-circles](https://github.com/saisanthoshs2006-cmd/care-circles). The [production site](https://care-circles-one.vercel.app/) was deployed through the user's Vercel project and its first-run screen was verified in a browser on 26 November 2026. Two-device sync and a complete request journey on the live site have not yet been verified.
 
 ## Competition disclosure
 
